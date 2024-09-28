@@ -96,6 +96,7 @@ const Signin = () => {
 				alert(res.data.message);
 			}
 		} catch (error) {
+			console.log(error)
 			alert("Error while sending request");
 		}
 	};
