@@ -67,10 +67,8 @@
 </head>
 <body>
     <h1><span class="emoji">📚</span> StudyShare</h1>
-    
     <h2><span class="emoji">🚀</span> Project Description</h2>
     <p>StudyShare is an innovative E-library platform designed to revolutionize the digital reading and learning experience. Our platform aims to create a vibrant community of readers and learners, providing a seamless environment for accessing, sharing, and discussing educational materials.</p>
-    
     <h2><span class="emoji">✨</span> Key Features</h2>
     <ul>
         <li><i class="fas fa-comments feature-icon"></i><strong>Real-Time Communication System:</strong> WebSocket-powered chat system for instant user interactions.</li>
@@ -80,8 +78,7 @@
         <li><i class="fas fa-trophy feature-icon"></i><strong>User Leaderboard:</strong> Competitive ranking system based on user ratings.</li>
         <li><i class="fas fa-search feature-icon"></i><strong>Powerful Search Functionality:</strong> Advanced search and filter options for efficient resource discovery.</li>
         <li><i class="fas fa-file-upload feature-icon"></i><strong>Seamless File Management:</strong> Easy upload and organization of study materials.</li>
-    </ul>
-    
+    </ul> 
     <h2><span class="emoji">⚙</span> Installation</h2>
     <h3>Backend Setup</h3>
     <pre><code>git clone https://github.com/Anshpatel2434/Tic-Tech-Toe-24.git
@@ -90,21 +87,18 @@ cd backend
 pip install scikit-learn
 cd admin
 py manage.py runserver
-</code></pre>
-    
+</code></pre>  
     <h3>Frontend Setup</h3>
     <pre><code>cd frontend
 npm install
 npm add react-calendar-heatmap
 npm run dev
-</code></pre>
-    
+</code></pre> 
     <h2><span class="emoji">🎥</span> Project Demo</h2>
     <div class="video-container">
         <iframe src="https://www.loom.com/embed/ed274b29a6804ceaa96627c59e5f76f0?sid=3e5e7532-9ada-4c8c-98dc-ba633a9ef8c7" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
     </div>
     <p>Watch our project demo: <a href="https://www.loom.com/share/ed274b29a6804ceaa96627c59e5f76f0?sid=3e5e7532-9ada-4c8c-98dc-ba633a9ef8c7" target="_blank">StudyShare Demo Video</a></p>
-    
     <h2><span class="emoji">🖼</span> Images</h2>
     <p>
         <!-- Replace with actual project screenshots -->
@@ -113,7 +107,6 @@ npm run dev
         <img src="https://drive.google.com/file/d/1oBTiw8dtZzMjQHLY0pHvHOKEo8ym495t/view?usp=drive_link" alt="StudyShare Chat Interface" style="max-width: 100%; height: auto;">
         <img src="https://drive.google.com/file/d/1Rr2BBNHW_aIzTqd1RiIW9tW-pNNemTwC/view?usp=drive_link" alt="StudyShare Chat Interface" style="max-width: 100%; height: auto;">
     </p>
-    
     <h2><span class="emoji">🤝</span> Contributing</h2>
     <p>We welcome contributions to StudyShare! Please read our contributing guidelines to get started.</p>
 </body>
