@@ -26,7 +26,7 @@ npm install
 npm add react-calendar-heatmap
 npm run dev</code></pre>
 <h2 style="color:#58a6ff;border-bottom:2px solid #58a6ff;padding-bottom:10px;">🎥 Project Demo</h2>
-<p>Watch our project demo: <a href="https://www.loom.com/share/ed274b29a6804ceaa96627c59e5f76f0?sid=3e5e7532-9ada-4c8c-98dc-ba633a9ef8c7" style="color:#58a6ff;">StudyShare Demo Video</a></p>
+<p>Watch our project demo: <a href="https://www.loom.com/share/9e324ae10b124fbe91dab6f26490e8df?sid=e56dc158-3937-4444-a89d-4236e413eb63" style="color:#58a6ff;">StudyShare Demo Video</a></p>
 <h2 style="color:#58a6ff;border-bottom:2px solid #58a6ff;padding-bottom:10px;">🖼 Images</h2>
 <img src="https://drive.google.com/uc?export=view&id=10sDx_FKuYyXvpvmPfU-CUng2ps2EGqwS" alt="StudyShare Dashboard" style="max-width:100%;height:auto;margin-bottom:20px;">
 <img src="https://drive.google.com/uc?export=view&id=15giDCPcawxT6xrs1nEXd9ZUt2OgSU9Fo" alt="StudyShare Chat Interface" style="max-width:100%;height:auto;margin-bottom:20px;">
