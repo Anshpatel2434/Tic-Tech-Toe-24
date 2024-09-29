@@ -30,7 +30,7 @@ class UserSigninSerializer(serializers.ModelSerializer):
 class CreateChatGroupSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChatGroup
-        fields = ['name']        
+        fields = ['name', 'displayName']        
 
 class ChatGroupSerializer(serializers.ModelSerializer):
 

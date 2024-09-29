@@ -20,20 +20,34 @@ const ProfileCard = ({
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 	const { user } = useContext(AppContext);
 	const [showGender, setShowGender] = useState(false);
+	const [temp, setTemp] = useState(false);
 
 	useEffect(() => {
 		if (gender) {
 			setSelectedGender(gender);
 		}
-	}, [gender]);
-
-	useEffect(() => {
-		console.log(user);
 		if (user) {
 			if (user.id == user_id && !gender) {
 				setShowGender(true);
 			} else {
 				setShowGender(false);
+			}
+		}
+	}, [gender]);
+
+	useEffect(() => {
+		setShowGender(temp);
+	}, [temp]);
+
+	useEffect(() => {
+		console.log("in profile card");
+		console.log(user);
+		console.log(user_id);
+		if (user) {
+			if (user.id == user_id && !gender) {
+				setTemp(true);
+			} else {
+				setTemp(false);
 			}
 		}
 	}, [user, selectedGender]);
@@ -77,7 +91,7 @@ const ProfileCard = ({
 					</div>
 				)}
 
-				{showGender && (
+				{user.id == user_id && !gender && (
 					<button
 						className="mt-2 border border-white rounded px-4 py-2 mb-4"
 						onClick={() => setShowDialog(true)}

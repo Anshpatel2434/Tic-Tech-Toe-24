@@ -16,27 +16,19 @@ const Dashboard = () => {
 	const { user } = useUser({ user_id });
 	const { files } = useFiles({ user_id });
 	const [uploads, setUploads] = useState([]);
-	const [temp, setTemp] = useState([]);
-	const [gotFile, setGotFile] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
-	// Ensure that the uploads variable has a default empty array if no files are loaded
 	useEffect(() => {
-		setTemp(files);
-		setGotFile(true);
+		if (files) {
+			setUploads(files);
+			setIsLoading(false);
+		}
 	}, [files]);
 
-	useEffect(() => {
-		if (gotFile) {
-			setUploads(temp);
-			console.log("upload changed final");
-			console.log(uploads);
-		}
-	}, [gotFile, temp]);
 	// Ensure user data has a default object if not yet loaded
 	const data = user || {};
 
-	// Show loading screen if either user or files are still being fetched
-	if (uploads.length == 0) {
+	if (isLoading) {
 		return <Loading />;
 	}
 
@@ -53,8 +45,8 @@ const Dashboard = () => {
 							email={data.email || "N/A"}
 							ratings={data.ratings || 0}
 							views={data.views || 0}
-							uploads={uploads.length || 0}
-							gender={data.gender || "Not Specified"}
+							uploads={uploads.length}
+							gender={data.gender || null}
 							user_id={user_id}
 						/>
 					</div>
@@ -63,15 +55,28 @@ const Dashboard = () => {
 					<div className="w-full md:w-2/3 lg:w-3/4 flex flex-col justify-between">
 						{/* Stats Cards at the top */}
 						<div className="flex flex-wrap sm:flex-nowrap items-start gap-2 mb-4">
-							<StatsCard uploads={uploads.length || 0} />
+							<StatsCard uploads={uploads.length} />
 							<StatsCard1 ratings={data.ratings || 0} />
 							<StatsCard2 views={data.views || 0} />
 						</div>
 
 						{/* Heatmap Area */}
-						<HeatMap uploads={uploads} />
+						{uploads.length > 0 ? (
+							<HeatMap uploads={uploads} />
+						) : (
+							<div className="text-white text-center p-4 bg-gray-700 rounded-lg">
+								No uploads available. Please upload some files to see the
+								heatmap.
+							</div>
+						)}
 
-						<UploadList uploads={uploads} />
+						{uploads.length > 0 ? (
+							<UploadList uploads={uploads} />
+						) : (
+							<div className="text-white text-center p-4 bg-gray-700 rounded-lg mt-4">
+								No uploads available. Start by uploading some files.
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

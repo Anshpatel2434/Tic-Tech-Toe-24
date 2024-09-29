@@ -201,15 +201,19 @@ class GetUserView(APIView):
             for i in files:
                 ser = FileSerializer(i)
                 all_file_data+=ser.data,
+            
 
             recommended_files_data = []
-            recommended_model_files = getRecommendedFiles(all_file_data, user.ratingList, user.viewList)
-            recommended_file_ids=[]
-            for i in recommended_model_files:
-                recommended_file_ids.append(i['id'])
-                # Fetch File objects for recommended file IDs
-            recommended_files = File.objects.filter(id__in=recommended_file_ids)
-            recommended_files_data = FileSerializer(recommended_files, many=True).data
+            if user.ratingList and user.viewList:
+                recommended_model_files = getRecommendedFiles(all_file_data, user.ratingList, user.viewList)
+                recommended_file_ids=[]
+                print("here")    
+                for i in recommended_model_files:
+                    recommended_file_ids.append(i['id'])
+                    # Fetch File objects for recommended file IDs
+            
+                recommended_files = File.objects.filter(id__in=recommended_file_ids)
+                recommended_files_data = FileSerializer(recommended_files, many=True).data
 
             # Serialize user data
 
@@ -413,7 +417,8 @@ class CreateChatGroup(APIView):
 
             # Create new chat group
             serializer = CreateChatGroupSerializer(data={
-                'name': sorted_group_name,  # Use the standardized name
+                'name': sorted_group_name,  # Use the standardized name,
+                'displayName' : f'{user1.name} and {user2.name} Chatroom'
             })
 
             if serializer.is_valid():
@@ -992,7 +997,7 @@ def getRecommendedFiles(all_file_data, ratingList, viewList):
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
 
     # Get the indices of the top 20 similar files (excluding exact matches)
-    top_indices = [i[0] for i in sim_scores if i[1] < 1][:20]
+    top_indices = [i[0] for i in sim_scores if i[1] < 1][:3]
 
     # Get the recommended files
     recommendations = df.iloc[top_indices]

@@ -41,10 +41,44 @@ const PostFile = () => {
 			toast.error("Please select a category");
 			return;
 		}
-		const fs = file.name.split(".");
-		if (fileInfo.type != fs[fs.length - 1]) {
-			toast.error("File type does not match with the file name");
-			return;
+		const validImageTypes = [
+			"image/jpeg",
+			"image/png",
+			"image/gif",
+			"image/bmp",
+			"image/webp",
+		];
+		const isImage = validImageTypes.includes(fileInfo.type);
+		const isPdf = fileInfo.type === "application/pdf";
+
+		if (isImage) {
+			// Check for image types
+			const fileExtension = fs[fs.length - 1].split(".").pop().toLowerCase(); // Get the file extension
+			const expectedImageExtensions = [
+				"jpeg",
+				"jpg",
+				"png",
+				"gif",
+				"bmp",
+				"webp",
+			];
+
+			if (!expectedImageExtensions.includes(fileExtension)) {
+				console.log(fileInfo.type);
+				console.log(fs[fs.length - 1]);
+				toast.error("File type does not match with the file name for images");
+				return;
+			}
+		} else if (isPdf) {
+			// Check for PDF file type
+			const fileExtension = fs[fs.length - 1].split(".").pop().toLowerCase(); // Get the file extension
+
+			if (fileExtension !== "pdf") {
+				console.log(fileInfo.type);
+				console.log(fs[fs.length - 1]);
+				toast.error("File type does not match with the file name for PDF");
+				return;
+			}
 		}
 
 		console.log(user);
@@ -93,36 +127,41 @@ const PostFile = () => {
 	const dropdownRef = useRef(null);
 
 	const options = [
-		"Fiction",
-		"Mystery",
-		"Thriller",
-		"Science Fiction",
-		"Fantasy",
-		"Historical",
-		"Biography",
-		"Self-Help",
-		"Romance",
-		"Horror",
-		"Adventure",
+		"Mathematics",
+		"Physics",
+		"Chemistry",
+		"Biology",
+		"Computer Science",
+		"Engineering",
+		"Law",
+		"Economics",
+		"Political Science",
+		"Psychology",
+		"Sociology",
 		"Philosophy",
-		"Children's",
-		"Young Adult",
-		"Poetry",
-		"Graphic Novel",
-		"Drama",
-		"Humor",
-		"Spirituality",
-		"Education",
-		"Health",
-		"Business",
-		"Travel",
-		"Cooking",
-		"Art",
 		"History",
-		"Science",
-		"Religion",
-		"Sports",
-		"Technology",
+		"Literature",
+		"Linguistics",
+		"Education",
+		"Environmental Science",
+		"Geography",
+		"Anthropology",
+		"Business Administration",
+		"Accounting",
+		"Finance",
+		"Marketing",
+		"Management",
+		"Art History",
+		"Music",
+		"Theatre",
+		"Architecture",
+		"Journalism",
+		"Astronomy",
+		"Statistics",
+		"Agriculture",
+		"Public Health",
+		"Nursing",
+		"Veterinary Science",
 	];
 
 	// Handle outside click to close the dropdown

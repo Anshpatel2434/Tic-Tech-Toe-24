@@ -46,7 +46,7 @@ const Sidebar = () => {
 		<div className={`sidebar ${isOpen ? "open" : ""}`}>
 			<div className="logo-details flex items-center">
 				<i className="bx bxs-book-open icon ml-2"></i>
-				<div className="logo_name flex items-center mt-1">E-Library</div>
+				<div className="logo_name flex items-center mt-1">StudyShare</div>
 				<i className="bx bx-menu" id="btn" onClick={toggleSidebar}></i>
 			</div>
 			<ul className="nav-list">

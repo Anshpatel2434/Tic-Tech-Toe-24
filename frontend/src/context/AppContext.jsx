@@ -7,7 +7,7 @@ const AppContextProvider = ({ children }) => {
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 	const [isOpen, setIsOpen] = useState(false);
 	const [user, setUser] = useState({
-		id: "",
+		id: 0,
 		name: "",
 		email: "",
 		ratingList: [],
@@ -42,6 +42,7 @@ const AppContextProvider = ({ children }) => {
 					Authorization: `${localStorage.getItem("token")}`,
 				},
 			});
+			console.log(res);
 			if (res.data.status === 200) {
 				setLoggedIn(true);
 				const temp = res.data.user;
