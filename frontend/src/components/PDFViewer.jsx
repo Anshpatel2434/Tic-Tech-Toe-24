@@ -1,23 +1,25 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
-import pdfjsWorker from "pdfjs-dist/build/pdf.worker.min.js";
+import pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry"; // Import worker
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker;
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorker; // Set the worker
 
-const PDFViewer = ({ url }) => {
+const PDFViewer = ({ pdfUrl }) => {
 	const canvasRef = useRef(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		const loadPDF = async () => {
+		const renderPDF = async () => {
+			setLoading(true);
 			try {
-				const loadingTask = pdfjsLib.getDocument(url);
-				const pdf = await loadingTask.promise;
-				const page = await pdf.getPage(1);
-				const scale = 1.5;
-				const viewport = page.getViewport({ scale });
+				const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+				const page = await pdf.getPage(1); // Renders the first page of the PDF
 
+				const viewport = page.getViewport({ scale: 1.5 });
 				const canvas = canvasRef.current;
 				const context = canvas.getContext("2d");
+
 				canvas.height = viewport.height;
 				canvas.width = viewport.width;
 
@@ -25,16 +27,27 @@ const PDFViewer = ({ url }) => {
 					canvasContext: context,
 					viewport: viewport,
 				};
-				await page.render(renderContext);
-			} catch (error) {
-				console.error("Error loading PDF:", error);
+
+				await page.render(renderContext).promise;
+				setLoading(false);
+			} catch (err) {
+				setError("Failed to load PDF");
+				setLoading(false);
 			}
 		};
 
-		loadPDF();
-	}, [url]);
+		if (pdfUrl) {
+			renderPDF();
+		}
+	}, [pdfUrl]);
 
-	return <canvas ref={canvasRef} />;
+	return (
+		<div>
+			{loading && <p>Loading PDF...</p>}
+			{error && <p>{error}</p>}
+			<canvas ref={canvasRef} style={{ width: "100%" }} />
+		</div>
+	);
 };
 
 export default PDFViewer;

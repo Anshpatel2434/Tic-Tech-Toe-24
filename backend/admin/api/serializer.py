@@ -36,7 +36,7 @@ class ChatGroupSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ChatGroup
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'displayName']
 
 class MessageSerializer(serializers.ModelSerializer):
     sender = UserSerializer(read_only=True)
@@ -57,7 +57,7 @@ class GetChatsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ChatGroup
-        fields = ['name', 'createdOn', 'messages']
+        fields = ['name', 'createdOn', 'messages', 'displayName']
 
 class FileSerializer(serializers.ModelSerializer):
     uploadedBy = UserSerializer()  # Will serialize the user's name

@@ -5,6 +5,7 @@ export const useChatGroup = ({ chat_name }) => {
 	const BACKEND_URL = import.meta.env.VITE_DATABASE_URL;
 
 	const [chats, setChats] = useState({});
+	const [displayName, setDisplayName] = useState("");
 
 	const [loading, setLoading] = useState(true);
 	async function sendRequest() {
@@ -22,6 +23,7 @@ export const useChatGroup = ({ chat_name }) => {
 				console.log("in get chats hook");
 				console.log(res.data.chats);
 				setChats(res.data.chats);
+				setDisplayName(res.data.chats.displayName);
 				setLoading(false);
 			} else {
 				alert("Error while fetching doubt");
@@ -36,6 +38,7 @@ export const useChatGroup = ({ chat_name }) => {
 	}, []);
 
 	return {
+		displayName,
 		chats,
 		loading,
 	};

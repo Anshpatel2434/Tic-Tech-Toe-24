@@ -40,6 +40,7 @@ class File(models.Model):
 class ChatGroup(models.Model):
     name = models.CharField(max_length=100, unique=True)
     createdOn = models.DateTimeField(default=datetime.now)
+    displayName = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
         return self.name

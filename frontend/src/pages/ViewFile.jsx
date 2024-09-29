@@ -25,6 +25,8 @@ const ViewFile = () => {
 	const [prevRating, setPrevRating] = useState(0);
 	const [isRatingLoaded, setIsRatingLoaded] = useState(false);
 	const [isBookmarked, setIsBookmarked] = useState(false); // State for bookmark
+	const pdfUrl =
+		"http://127.0.0.1:8000/media/documents/tictechtoe-24-mid-eval.pdf";
 
 	if (file) {
 		console.log("file details");
@@ -205,14 +207,9 @@ const ViewFile = () => {
 								label="Views"
 								value={file.views}
 							/>
-							<FileInfoItem
-								icon={<FaDownload className="text-blue-500" />}
-								label="Downloads"
-								value={file.downloads}
-							/>
 							<div className="flex items-center space-x-2">
 								<FaStar className="text-yellow-500" />
-								<span className="font-semibold">Average Rating:</span>
+								<span className="font-semibold">Total Rating:</span>
 								<span className="text-gray-300">
 									{file.rating ? file.rating.toFixed(1) : "N/A"}
 								</span>

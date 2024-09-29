@@ -75,7 +75,7 @@ const Chatrooms = () => {
 											<FaComments className="text-2xl text-blue-400" />
 											<div className="flex-grow">
 												<h3 className="text-lg font-semibold">
-													{chatroom.name}
+													{chatroom.displayName}
 												</h3>
 												{/* <div className="flex items-center text-sm text-gray-400">
 													<FaUser className="mr-2" />

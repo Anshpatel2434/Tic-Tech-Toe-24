@@ -29,7 +29,7 @@ const ChatPage = () => {
 
 	const { isCreated } = useCreateGroup({ chat_name });
 
-	const { chats, loading } = useChatGroup({ chat_name });
+	const { chats, loading, displayName } = useChatGroup({ chat_name });
 
 	const scrollToBottom = () => {
 		setTimeout(() => {
@@ -131,7 +131,7 @@ const ChatPage = () => {
 				{/* Header Section */}
 				<div className="sticky top-0 z-10 bg-gray-800 p-[0.5rem] sm:p-[1rem] shadow-md flex items-center justify-between">
 					<h1 className="text-[1rem] sm:text-[1.5rem] font-bold text-white truncate">
-						{chat_name}
+						{displayName}
 					</h1>
 					<button
 						onClick={() => navigate(-1)}
